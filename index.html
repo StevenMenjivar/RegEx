@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Expresiones Regulares</title>
+  <!--stylesheet-->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    type="text/css">
+  <link href="styles/styles.css" rel="stylesheet" type="text/css">
+  <link href="styles/custom-responsive-styles.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="styles/miestilos.css">
+  <!--scripts-->
+  <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="scripts/all-plugins.js"></script>
+  <script type="text/javascript" src="scripts/plugins-activate.js"></script>
+
+
+</head>
+
+<body id="page-top">
+  <!-- Navigation -->
+
+  <a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+  </a>
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="smooth-scroll" href="#Header"></a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#page-top">Inicio</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#About">Principal</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#Ejemplo">Ejemplo</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#Services">Resumen</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- Header Starts -->
+  <section id="Banner" class="content-section">
+    <div class="container content-wrap text-center">
+      <h1>¿Qué son las Expresiones Regulares?</h1>
+      <h3 id="subtitulo">
+        <em>¿Y por qué son tan imporantes?</em>
+      </h3>
+
+    </div>
+    <div class="overlay"></div>
+  </section>
+  <!-- Header Ends -->
+  <!-- About Us Starts -->
+  <section id="About" class="content-section">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="block-heading">
+
+            <p class="lead">En muchas ocasiones nos encontraremos en la situación de querer realizar una o varias
+              acciones si se cumple un determinado caso. Pero muchas veces, esos casos no son tan simples, sino que
+              existe un número muy alto de situaciones diferentes que no podemos cubrir de formas tradicionales. En esas
+              situaciones es donde las expresiones regulares quizás nos puedan ser de ayuda.</p>
+          </div>
+          <div class="block-heading">
+            <h2>¿Qué es una RegExp?</h2>
+            <p class="lead">Las expresiones regulares (a menudo llamadas RegExp o RegEx) son un sistema para buscar,
+              capturar o reemplazar texto utilizando patrones. Estos patrones permiten realizar una búsqueda de texto de
+              una forma relativamente sencilla y abstracta, de forma que abarca una gran cantidad de posibilidades que
+              de otra forma sería imposible o muy costosa.</p>
+
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>Constructor</th>
+                  <th>Descripci&oacute;n</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>new RegExp(r, flags)</td>
+                  <td>Crea una nueva expresi&oacute;n regular a partir de r con los flags indicados.</td>
+                </tr>
+                <tr>
+                  <td>c/r/flags</td>
+                  <td>Simplemente, la expresi&oacute;n regular r entre barras /. Notaci&oacute;n preferida.</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <p class="lead">Así pues, podríamos crear expresiones regulares de estas dos formas, siempre teniendo como
+              notación preferida la primera:</p>
+
+            <pre><code>
+              // Notación literal (preferida)
+              const r = /.a.o/i;
+              
+              // Notación de objeto
+              const r = new RegExp(".a.o", "i");
+              const r = new RegExp(/.a.o/, "i");
+              
+              </code></pre>
+
+            <p class="lead">En ambos ejemplos, estamos estableciendo la expresión regular .a.o, donde el punto (como
+              veremos más adelante) es un comodín que simboliza cualquier carácter, y la i es un flag que establece que
+              no diferencia mayúsculas de minúsculas.</p>
+
+            <div class="fondo-celeste">
+              <p class="lead">En Javascript, se prefiere utilizar las barras / para delimitar una expresión regular en
+                una variable. Se trata de una forma más cómoda y compacta que evita tener que hacer un
+                <em><strong>new</strong></em> del objeto</p>
+            </div>
+
+          </div>
+          <div class="block-heading">
+            <h2>Propiedades de una RegExp</h2>
+            <p class="lead">Cada expresión regular creada, tiene unas propiedades definidas, donde podemos consultar
+              ciertas características de la expresión regular en cuestión. Además, también tiene unas propiedades de
+              comprobación para saber si un flag determinado está activo o no:</p>
+
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>Propiedades</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>.source</td>
+                  <td>Devuelve un string con la expresión regular original al crear el objeto (sin flags).</td>
+                </tr>
+                <tr>
+                  <td>.flags</td>
+                  <td>Devuelve un string con los flags activados en la expresión regular.</td>
+                </tr>
+                <tr>
+                  <td>.lastIndex</td>
+                  <td>Devuelve la posición donde se encontró una ocurrencia en la última búsqueda.</td>
+                </tr>
+                <tr>
+                  <td>.global</td>
+                  <td>Comprueba si el flag g está activo en la expresión regular.</td>
+                </tr>
+                <tr>
+                  <td>.ignoreCase</td>
+                  <td>Comprueba si el flag i está activo en la expresión regular.</td>
+                </tr>
+                <tr>
+                  <td>.multiline</td>
+                  <td>Comprueba si el flag m está activo en la expresión regular.</td>
+                </tr>
+                <tr>
+                  <td> .unicode</td>
+                  <td>Comprueba si el flag u está activo en la expresión regular.</td>
+                </tr>
+                <tr>
+                  <td>.sticky</td>
+                  <td>Comprueba si el flag y está activo en la expresión regular.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <br>
+
+            <p class="lead">El funcionamiento de los flags los veremos en el apartado siguiente. No obstante, con las
+              propiedades
+              .source y .flags se puede obtener casi toda la información que se puede hacer con dichos flags</p>
+
+
+            <pre><code>
+                const r = /reg/gi;
+
+                r.source; // 'reg'
+                r.flags; // 'ig'
+                
+                r.flags.includes("g"); // true (equivalente a r.global)
+                r.flags.includes("u"); // false (equivalente a r.unicode)
+                
+                </code></pre>
+
+            <p class="lead">También podemos comprobar si un flag está activo con la propiedad .flags combinada con
+              includes(), como se puede ver en el ejemplo anterior. Por otro lado, .source nos devuelve un con la
+              expresión regular definida (y sin flags). La utilidad de lastIndex() la veremos más adelante.</p>
+
+          </div>
+          <div class="block-heading">
+            <h2>Flags de una RegExp</h2>
+            <p class="lead">El segundo parámetro del new RegExp() o el que se escribe después de la segunda barra /
+              delimitadora del literal de las expresiones regulares, son una serie de carácteres que indican los flags
+              activos en la expresión regular en cuestión:</p>
+
+            <pre><code>
+              const r1 = /reg/;
+              const r2 = /reg/i;
+              const r3 = /reg/gi;
+              
+              </code></pre>
+
+            <p class="lead">La expresión regular r1 no tiene ningún flag activado, mientras que r2 tiene el flag i
+              activado y r3 tiene el flag i y el flag g activado. Veamos para que sirve cada flag:</p>
+
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>Flag</th>
+                  <th>Booleano</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>i</td>
+                  <td>.ignoreCase</td>
+                  <td>Ignora mayúsculas y minúsculas. Se suele denominar insensible a mayús/minús.</td>
+                </tr>
+                <tr>
+                  <td>g</td>
+                  <td>.global</td>
+                  <td>Búsqueda global. Sigue buscando coincidencias en lugar de pararse al encontrar una.</td>
+                </tr>
+                <tr>
+                  <td>m</td>
+                  <td>.multiline</td>
+                  <td>Multilínea. Permite a ^ y $ tratar los finales de línea \r o \n.</td>
+                </tr>
+                <tr>
+                  <td>u</td>
+                  <td>.unicode</td>
+                  <td>Unicode. Interpreta el patrón como un código de una secuencia Unicode.</td>
+                </tr>
+                <tr>
+                  <td>y</td>
+                  <td>.sticky</td>
+                  <td>Sticky. Busca sólo desde la posición indicada por lastIndex.</td>
+                </tr>
+
+              </tbody>
+            </table>
+
+            <br>
+
+            <p class="lead">
+              Cada una de estas flags se pueden comprobar si están activas desde Javascript con su booleano asociado,
+              que es una propiedad de la expresión regular:
+            </p>
+
+
+            <pre><code>
+              const r = /reg/gi;
+
+              r.global; // true
+              r.ignoreCase; // true
+              r.multiline; // false
+              r.sticky; // false
+              r.unicode; // false
+              
+              </code></pre>
+
+          </div>
+
+
+
+
+
+
+          <div class="block-heading">
+            <h2>Métodos de RegExp</h2>
+            <p class="lead">Los objetos RegExp tienen varios métodos para utilizar expresiones regulares contra textos y
+              saber si «casan» o no, es decir, si el patrón de la expresión regular encaja con el texto propuesto.</p>
+
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>Método</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>test(str)</td>
+                  <td>Comprueba si la expresión regular «casa» con el texto str pasado por parámetro.</td>
+                </tr>
+                <tr>
+                  <td>exec(str)</td>
+                  <td>Ejecuta una búsqueda de patrón en el texto str. Devuelve un array con las capturas.</td>
+                </tr>
+
+              </tbody>
+            </table>
+
+            <br>
+
+            <p class="lead">Por ejemplo, veamos como utilizar la expresión regular del ejemplo anterior con el método
+              test() para comprobar si encaja con un texto determinado:</p>
+
+            <pre><code>
+              const r = /.a.o/i;
+
+              r.test("gato"); // true
+              r.test("pato"); // true
+              r.test("perro"); // false
+              r.test("DATO"); // true   (el flag i permite mayús/minús)
+              
+              </code></pre>
+
+            <p class="lead">El método exec() lo veremos un poco más adelante en el apartado de captura de patrones, ya
+              que es algo más complejo. Primero debemos aprender que carácteres especiales existen en las expresiones
+              regulares para dominarlas.</p>
+          </div>
+
+
+
+
+
+          <div class="block-heading">
+            <h2>Carácteres especiales</h2>
+            <p class="lead">Antes de comenzar a utilizar expresiones regulares hay que aprender la parte más compleja de
+              ellas: los carácteres especiales. Dentro de las expresiones regulares, existen ciertos carácteres que
+              tienen un significado especial, y también, muchos de ellos dependen de donde se encuentren para tener ese
+              significado especial, por lo que hay que aprender bien como funcionan.</p>
+
+            <h3> >>Clases básicas</h3>
+            <p class="lead">Empecemos con algunos de los más sencillos:</p>
+
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>Caracter especial</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>.</td>
+                  <td>Comodín, cualquier caracter.</td>
+                </tr>
+                <tr>
+                  <td>\</td>
+                  <td>Invierte el significado de un carácter. Si es especial, lo escapa. Si no, lo vuelve especial.</td>
+                </tr>
+                <tr>
+                  <td>\t</td>
+                  <td>Caracter especial. Tabulador.</td>
+                </tr>
+                <tr>
+                  <td>\r</td>
+                  <td>Caracter especial. Retorno de carro. A menudo denominado CR.</td>
+                </tr>
+                <tr>
+                  <td>\n</td>
+                  <td>Caracter especial. Nueva línea. A menudo denominado «line feed» o LF.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="lead">
+              En esta pequeña tabla vemos algunos caracteres especiales que podemos usar en expresiones regulares.
+              Observa que al igual que con otros tipos de datos, podemos utilizar el método test() sobre el literal de
+              la expresión regular, sin necesidad de guardarla en una variable previamente:
+            </p>
+
+            <pre><code>
+              // Buscamos RegExp que encaje con "Manz"
+              /M.nz/.test("Manz"); // true
+              /M.nz/.test("manz"); // false  (La «M» debe ser mayúscula)
+              /M.nz/i.test("manz"); // true   (Ignoramos mayús/minús con el flag «i»)
+
+              // Buscamos RegExp que encaje con "A."
+              /A./.test("A."); // true   (Ojo, nos da true, pero el punto es comodín)
+              /A./.test("Ab"); // true   (Nos da true con cualquier cosa)
+              /A\./.test("A."); // true   (Solución correcta)
+              /A\./.test("Ab"); // false  (Ahora no deja pasar algo que no sea punto)
+              
+              </code></pre>
+
+            <h3>>>Conjunto de carácteres o alternativas</h3>
+            <p class="lead">
+              Dentro de las expresiones regulares los corchetes [] tienen un significado especial. Se trata de un
+              mecanismo para englobar un conjunto de carácteres personalizado. Por otro lado, si incluimos un
+              circunflejo ^ antes de los carácteres del corchete, invertimos el significado, pasando a ser que no exista
+              el conjunto de carácteres personalizado:
+            </p>
+
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>head1</th>
+                  <th>head2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Caracter especial</td>
+                  <td>Descripci&oacute;n</td>
+                </tr>
+                <tr>
+                  <td>[ ]</td>
+                  <td>Rango de car&aacute;cteres. Cualquiera de los caracteres del interior de los corchetes.</td>
+                </tr>
+                <tr>
+                  <td>[ ^ ]</td>
+                  <td>No exista cualquiera de los caracteres del interior de los corchetes.</td>
+                </tr>
+                <tr>
+                  <td>|</td>
+                  <td>Establece una alternativa: lo que est&aacute; a la izquierda o lo que est&aacute; a la derecha.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <p class="lead">
+              Por último, tenemos el «pipe» |, con el que podemos establecer alternativas. Veamos un ejemplo aplicado a
+              esto, que se verá más claro:
+            </p>
+
+
+            <pre><code>
+              r.test("a"); // true (es vocal)
+              r.test("E"); // true (es vocal, y tiene flag «i»)
+              r.test("t"); // false (no es vocal)
+              
+              const r = /[^aeiou]/i; // RegExp que acepta lo que no sea vocal (mayús/minús)
+              
+              r.test("a"); // false
+              r.test("E"); // false
+              r.test("T"); // true
+              r.test("m"); // true
+              
+              const r = /casa|cama/; // RegExp que acepta la primera o la segunda opción
+              
+              r.test("casa"); // true
+              r.test("cama"); // true
+              r.test("capa"); // false
+              
+              </code></pre>
+
+            <p class="lead">
+              En el interior de los corchetes, si establecemos dos carácteres separados por guión, por ejemplo [0-9], se
+              entiende que indicamos el rango de carácteres entre 0 y 9, sin tener que escribirlos todos explícitamente.
+            </p>
+            <p class="lead">De esta forma podemos crear rangos como [A-Z] (mayúsculas) o [a-z] (minúsculas), o incluso
+              varios rangos específicos como [A-Za-z0-9]:</p>
+
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>Caracter especial</th>
+                  <th>Alternativa</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>[0-9]</td>
+                  <td>\d</td>
+                  <td>Un dígito del 0 al 9.</td>
+                </tr>
+                <tr>
+                  <td>[^0-9]</td>
+                  <td>\D</td>
+                  <td>No exista un dígito del 0 al 9.</td>
+                </tr>
+                <tr>
+                  <td>[A-Z]</td>
+                  <td></td>
+                  <td>Letra mayúscula de la A a la Z. Excluye ñ o letras acentuadas.</td>
+                </tr>
+                <tr>
+                  <td>[a-z]</td>
+                  <td></td>
+                  <td>Letra minúscula de la a a la z. Excluye ñ o letras acentuadas.</td>
+                </tr>
+                <tr>
+                  <td>[A-Za-z0-9]</td>
+                  <td>\w</td>
+                  <td>Carácter alfanumérico (letra mayúscula, minúscula o dígito).</td>
+                </tr>
+                <tr>
+                  <td>[^A-Za-z0-9]</td>
+                  <td>\W</td>
+                  <td>No exista carácter alfanumérico (letra mayúscula, minúscula o dígito).</td>
+                </tr>
+
+              </tbody>
+            </table>
+            <br>
+            <h3>>>Cuantificadores</h3>
+            <p class="lead">En las expresiones regulares los cuantificadores permiten indicar cuántas veces se puede
+              repetir el carácter inmediatamente anterior. Existen varios tipos de cuantificadores:</p>
+
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>Caracter especial</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>*</td>
+                  <td>El carácter anterior puede aparecer 0 o más veces.</td>
+                </tr>
+                <tr>
+                  <td>+</td>
+                  <td>El carácter anterior puede aparecer 1 o más veces.</td>
+                </tr>
+                <tr>
+                  <td>?</td>
+                  <td>El carácter anterior puede aparecer o no aparecer.</td>
+                </tr>
+                <tr>
+                  <td>{n}</td>
+                  <td>El carácter anterior aparece n veces.</td>
+                </tr>
+                <tr>
+                  <td>{n,}</td>
+                  <td>El carácter anterior aparece n o más veces.</td>
+                </tr>
+                <tr>
+                  <td>{n,m}</td>
+                  <td>El carácter anterior aparece de n a m veces</td>
+
+              </tbody>
+            </table>
+            <br>
+
+            <p class="lead">
+              Veamos algunos ejemplos para aprender a aplicarlos. Comencemos con * (0 o más veces):
+            </p>
+
+            <pre><code>
+              // 'a' aparece 0 o más veces en el string
+              const r = /a*/;
+              
+              r.test(""); // true ('a' aparece 0 veces)
+              r.test("a"); // true ('a' aparece 1 veces)
+              r.test("aa"); // true ('a' aparece 2 veces)
+              r.test("aba"); // true ('a' aparece 2 veces)
+              r.test("bbb"); // true ('a' aparece 0 veces)
+              
+              </code></pre>
+
+            <p class="lead">El cuantificador + es muy parecido a *, sólo que con el primero es necesario que el carácter
+              anterior aparezca al menos una vez:</p>
+            <pre><code>
+                // 'a' aparece 1 o más veces (equivalente a /aa*/)
+                const r = /a+/;
+                
+                r.test(""); // false ('a' aparece 0 veces)
+                r.test("a"); // true ('a' aparece 1 veces)
+                r.test("aa"); // true ('a' aparece 2 veces)
+                r.test("aba"); // true ('a' aparece 2 veces)
+                r.test("bbb"); // false ('a' aparece 0 veces)
+                
+                </code></pre>
+            <p class="lead">El cuantificador ? se suele utilizar para indicar que el carácter anterior es opcional
+              (puede aparecer o puede no aparecer). Normalmente se utiliza cuando quieres indicar que no importa que
+              aparezca un carácter opcional:</p>
+            <pre><code>
+                  const r = /disparos?/i;
+
+                  r.test("Escuché disparos en la habitación."); // true
+                  r.test("Efectuó un disparo al sujeto."); // true
+                  r.test("La pistola era de agua."); // false
+                  
+                  </code></pre>
+            <p class="lead">
+              Los tres cuantificadores siguientes, se utilizan cuando necesitamos concretar más el número de
+              repeticiones del caracter anterior. Por ejemplo, {n} indica un número exacto, {n,} indica al menos n veces
+              y {n,m} establece que se repita de n a m veces.
+            </p>
+            <pre><code>
+                    // Un número formado de 2 dígitos (del 0 al 9)
+                    const r = /[0-9]{2}/;
+
+                    r.test(42); // true
+                    r.test(88); // true
+                    r.test(1); // false
+                    r.test(100); // true
+                    
+                    </code></pre>
+            <p class="lead">Observa que el último aparece como true. Esto ocurre porque en la expresión regular no se
+              han establecido anclas que delimiten el inicio y/o el final del texto. Si las añadimos, es más estricto
+              con las comprobaciones:</p>
+            <pre><code>
+                      const r = /^[0-9]{2}$/;
+
+                      r.test(4); // false
+                      r.test(55); // true
+                      r.test(100); // false
+                      
+                      const r = /^[0-9]{3,}$/;
+                      
+                      r.test(33); // false
+                      r.test(4923); // true
+                      
+                      const r = /^[0-9]{2,5}$/;
+                      
+                      r.test(2); // false
+                      r.test(444); // true
+                      r.test(543213); // false
+                      
+                      </code></pre>
+
+            <div class="fondo-celeste">
+              <p class="lead">Recuerda también que aunque test() espera un por parámetro, en caso de enviarle otro
+                objeto, lo pasará a mediante el método toString() que existe en todos los objetos de Javascript</p>
+            </div>
+            <table class="blueTable">
+              <thead>
+                <tr>
+                  <th>Caracter especial</th>
+                  <th>Descripción</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>(x)</td>
+                  <td>El patrón incluído dentro de paréntesis se captura y se guarda en $1 o sucesivos.</td>
+                </tr>
+                <tr>
+                  <td>(?:x)</td>
+                  <td>Si incluímos ?: al inicio del contenido de los paréntesis, evitamos capturar ese patrón.</td>
+                </tr>
+                <tr>
+                  <td>x(?=y)</td>
+                  <td>Busca sólo si x está seguido de y.</td>
+                </tr>
+                <tr>
+                  <td>x(?!y)</td>
+                  <td>Busca sólo si x no está seguido de y.</td>
+                </tr>
+
+              </tbody>
+            </table>
+            <br>
+
+            <p class="lead">Así pues, vamos a realizar una captura a través de los paréntesis de una expresión regular:
+            </p>
+
+            <pre><code>
+                // RegExp que captura palabras de 3 letras.
+                const r = /\b([a-z]{3})\b/gi;
+                const str = "Hola a todos, amigos míos. Esto es una prueba que permitirá ver que ocurre.";
+                
+                r.global; // true (el flag global está activado)
+                
+                r.exec(str); // ['una', 'una']     index: 35
+                r.exec(str); // ['que', 'que']     index: 46
+                r.exec(str); // ['ver', 'ver']     index: 60
+                r.exec(str); // ['que', 'que']     index: 64
+                r.exec(str); // null
+                
+                </code></pre>
+            <p class="lead">El método exec() nos permite ejecutar una búsqueda sobre el texto str hasta encontrar una
+              coincidencia. En ese caso, se detiene la búsqueda y nos devuelve un array con los capturados por la
+              parentización. Si el flag g está activado, podemos volver a ejecutar exec() para continuar buscando la
+              siguiente aparición, hasta que no encuentre ninguna más, que devolverá null.</p>
+
+          </div>
+
+          
+
+
+  <!-- EJEMPLO PRACTICO -->
+  <section id="Ejemplo" class="content-section">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>EJEMPLO DEL USO DE EXPRESIONES REGULARES</h1>
+          <p>Utilizaremos expresiones regulares para poder validar las entradas a un formulario</p>
+          <form action="" class="formulario" id="formulario">
+            <!-- Grupo Usuario -->
+            <div class="formulario__grupo" id="grupo__usuario">
+              <label for="usuario" class="formulario__label">Usuario</label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="Kyon">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">Por favor ingrese un usuario que contenga entre 3 y 33 caracteres, no contenga espacios y que no contenga ninguno de los siguientes caracteres: / \ : * ? &quot; &lt; &gt; |</p>
+            </div>
+            <!-- Grupo Nombre -->
+            <div class="formulario__grupo" id="grupo__nombre">
+              <label for="nombre" class="formulario__label">Nombre</label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="John Smith">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <!-- https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/ -->
+              <p class="formulario__input-error">Es necesario que ingrese al menos 1 nombre.</p>
+            </div>
+            <!-- Grupo Contraseña (Pass) -->
+            <div class="formulario__grupo" id="grupo__password">
+              <label for="password" class="formulario__label">Contraseña</label>
+              <div class="formulario__grupo-input">
+                <input type="password" class="formulario__input" name="password" id="password">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">Por su seguridad, su contraseña debe contener entre 8 y 100 caracteres.</p>
+            </div>
+              
+              <div class="formulario__grupo" id="grupo__telefono2">
+              <label for="telefono2" class="formulario__label">Dui</label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="formulario__input" name="telefono2" id="telefono2" placeholder="dui">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">Por favor ingrese un Dui que contenga el formato: 12345678-9  </p>
+            </div>
+            
+            <!-- Grupo Confirmación Contraseña (Pass2) -->
+            <div class="formulario__grupo" id="grupo__password2">
+              <label for="password2" class="formulario__label">Confirmación</label>
+              <div class="formulario__grupo-input">
+                <input type="password" class="formulario__input" name="password2" id="password2">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">Las contraseñas no coinciden, por favor intente nuevamente.</p>
+            </div>
+            <!-- Grupo Email -->
+           <div class="formulario__grupo" id="grupo__correo">
+				<label for="correo" class="formulario__label">Correo Electrónico</label>
+				<div class="formulario__grupo-input">
+					<input type="email" class="formulario__input" name="correo" id="correo" placeholder="usuario@dominio.com">
+					<i class="formulario__validacion-estado fas fa-times-circle"></i>
+				</div>
+				<p class="formulario__input-error">Por favor ingrese un correo válido.</p>
+			</div>
+            <!-- Grupo Teléfono -->
+            <div class="formulario__grupo" id="grupo__telefono">
+              <label for="telefono" class="formulario__label">Teléfono</label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="942968">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">Por favor ingrese un teléfono que contenga 8 dígitos, y ninguno de los siguientes caracteres: / \ : * ? - &quot; &lt; &gt; |</p>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <!-- About Us Starts -->
+  <section id="Services" class="content-section text-center">
+    <div class="container">
+      <div class="block-heading">
+        <h2>En Resumen</h2>
+
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon yellow">
+              <div class="front-content">
+
+                <h3>Las expresiones regulares pueden ayudarte a escribir código corto</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>Las expresiones regulares pueden ayudarte a escribir código corto</h3>
+              <p>Esto puede ser especialmente útil en JavaScript, donde mantener la longitud del código baja es importante para las personas con conexiones lentas a Internet. </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon orange">
+              <div class="front-content">
+
+                <h3>Las expresiones regulares ahorran tiempo</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>Las expresiones regulares ahorran tiempo</h3>
+              <p>Incluso para los recién llegados que todavía luchan con la sintaxis, las expresiones regulares suelen ser la forma más rápida de hacer el trabajo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box ">
+            <div class="service-icon red">
+              <div class="front-content">
+
+                <h3>Las expresiones regulares son rápidas</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>Las expresiones regulares son rápidas</h3>
+              <p>Las expresiones regulares escritas teniendo en cuenta el rendimiento serán lo suficientemente rápidas para sus necesidades en casi todos los casos</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="service-box">
+            <div class="service-icon grey">
+              <div class="front-content">
+
+                <h3>Las expresiones regulares son divertidas</h3>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3>Las expresiones regulares son divertidas</h3>
+              <p>Como cualquier buen desafío, las expresiones regulares pueden ser muy divertidas. Herramientas como <a href="https://www.regexpal.com/">RegexPal</a>  pueden ayudar a eliminar muchas conjeturas, para que pueda concentrarse en resolver problemas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript" src="scripts/formulario.js"></script>
+  <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+
+</body>
+    <footer class="footer text-center">
+      <div class="container">
+        <p class="lead justify">Visita nuestras redes sociales para mantenerte informado</p>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3" href="javascript:void(0)">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white mr-3" href="javascript:void(0)">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="social-link rounded-circle text-white" href="javascript:void(0)">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+        <p class="text-muted small mb-0 justify">Copyright © LIC104 2020</p>
+        <p class="text-muted small mb-0 justify">Hecho por</p>
+        <p class="text-muted small mb-0 justify">Marvin Josué Rivera Serrano</p>
+        <p class="text-muted small mb-0 justify">Oscar Anibal Carranza Valiente</p>
+        <p class="text-muted small mb-0 justify">Oscar Steven García Menjívar</p>
+      </div>
+    </footer>
+
+</html>
